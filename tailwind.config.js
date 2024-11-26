@@ -10,6 +10,10 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        customBlue: '#006B99',
+        customOrange: '#F68B1F',
+        hoverBlue: '#005B8C',
+        hoverOrange: '##F68B1F',
       },
     },
   },
