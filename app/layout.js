@@ -12,11 +12,11 @@ export default function Layout({ children }) {
     <html lang="pt-br">
       <body className="flex flex-col min-h-screen text-gray-800">
         <header className="bg-customBlue text-white py-8 shadow-md shadow-zinc-600">
-          <div className="container mx-auto flex justify-center items-center px-4">
+          <div className="container mx-auto flex justify-center items-center">
             <nav>
               <ul className="flex space-x-20">
                 <li>
-                  <Link href="/home" className="flex items-baseline gap-1 font-semibold relative transition-all duration-300 hover:after:w-full after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-customOrange after:transition-all after:duration-300"><FaHome size={25} />Home</Link>
+                  <Link href="/" className="flex items-baseline gap-1 font-semibold relative transition-all duration-300 hover:after:w-full after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-customOrange after:transition-all after:duration-300"><FaHome size={25} />Home</Link>
                 </li>
                 <li>
                   <Link href="/sobrenos" className="flex items-baseline gap-1 font-semibold relative transition-all duration-300 hover:after:w-full after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-customOrange after:transition-all after:duration-300"><FaInfoCircle size={25} />Sobre nós</Link>
@@ -32,7 +32,7 @@ export default function Layout({ children }) {
           </div>
         </header>
 
-        <main className="flex-grow container mx-auto px-4 py-6">
+        <main>
           {children}
         </main>
 
