@@ -1,6 +1,6 @@
 'use client';
 import { useState } from "react";
-import { useRouter } from "next/navigation";  // useRouter do Next.js
+import { useRouter } from "next/navigation"; 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginPage() {
@@ -13,7 +13,7 @@ export default function LoginPage() {
         confirmPassword: "",
     });
     const [error, setError] = useState("");
-    const router = useRouter();  // Hook para navegação
+    const router = useRouter();
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,13 +37,14 @@ export default function LoginPage() {
                 password: formData.password,
             }),
         });
-
+        
         if (res.ok) {
-            const { token } = await res.json();
+            const { name, token } = await res.json();
             localStorage.setItem("authToken", token);
-            router.push("/");  // Usando o useRouter para redirecionar
+            localStorage.setItem("userName", name);
+            router.push("/");
         } else {
-            const { message } = await res.json();  // Alterado para 'message' ao invés de 'error'
+            const { message } = await res.json();
             setError(message);
         }
     };
@@ -117,7 +118,7 @@ export default function LoginPage() {
                             />
                         </div>
                     )}
-                    <button className="w-full bg-customBlue  font-semibold text-white py-2 rounded-lg mb-4">
+                    <button className="w-full bg-customBlue  font-semibold text-white py-2 rounded-lg mb-4 hover:bg-customOrange transition">
                         {isRegistering ? "Cadastrar" : "Entrar"}
                     </button>
                     <p className="text-center">
@@ -125,7 +126,7 @@ export default function LoginPage() {
                             <>
                                 Já tem uma conta?{" "}
                                 <span
-                                    className="text-blue-500 cursor-pointer"
+                                    className="text-blue-500 cursor-pointer hover:underline"
                                     onClick={() => setIsRegistering(false)}
                                 >
                                     Faça login
@@ -135,7 +136,7 @@ export default function LoginPage() {
                             <>
                                 Não tem uma conta?{" "}
                                 <span
-                                    className="text-blue-500 cursor-pointer"
+                                    className="text-blue-500 cursor-pointer hover:underline"
                                     onClick={() => setIsRegistering(true)}
                                 >
                                     Cadastre-se

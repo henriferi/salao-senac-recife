@@ -25,12 +25,11 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: 'Senha incorreta' }), { status: 401 });
   }
 
-  // Gerar o JWT
   const token = jwt.sign(
-    { userId: user.id, email: user.email },
+    { userId: user.id, email: user.email, userName: user.name },
     process.env.JWT_SECRET,
-    { expiresIn: '1h' }
+    { expiresIn: '1h' },
   );
 
-  return new Response(JSON.stringify({ token }), { status: 200 });
+  return new Response(JSON.stringify({ token, name: user.name}), { status: 200 });
 }

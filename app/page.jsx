@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AuthGuard from "./components/AuthGuard";
 import Loading from "./components/Loading";
+import Logout from "./components/Logout";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Home() {
     },
   ];
 
+
   const openModal = (style) => {
     setSelectedStyle(style);
     setIsModalOpen(true);
@@ -58,7 +60,6 @@ export default function Home() {
 
   const [error, setError] = useState('');
 
-  // Função para lidar com as mudanças nos campos do formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -67,34 +68,29 @@ export default function Home() {
     });
   };
 
-  // Função de validação do formulário
   const validateForm = () => {
     const today = new Date();
     const selectedDate = new Date(formData.date);
     const selectedTime = formData.time;
 
-    // Validação para data não ser anterior ao dia de hoje
     if (selectedDate < today) {
       setError("A data não pode ser anterior ao dia de hoje.");
       return false;
     }
 
-    // Validação para o horário ser entre 08:00 e 19:00
     const [hours, minutes] = selectedTime.split(':').map(Number);
     if (hours < 8 || hours > 19 || (hours === 19 && minutes > 0)) {
       setError("O horário deve ser entre 08:00 e 19:00.");
       return false;
     }
 
-    setError(''); // Limpa a mensagem de erro se a validação passar
+    setError(''); 
     return true;
   };
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Se a validação falhar, não submete o formulário
     if (!validateForm()) {
       return;
     }
@@ -103,11 +99,13 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
+
   return (
     <AuthGuard>
       <Loading delay={300} />
       <div className="bg-gray-100 min-h-screen">
-        <div className="text-center p-8 bg-bgCards rounded-lg mx-4 my-8 shadow-md">
+        <Logout />
+        <div className="text-center p-8 bg-bgCards rounded-lg mx-4 my-2 shadow-md">
           <img src="/senac.png" alt="Logo Senac" className="mx-auto w-32 h-auto mb-4" />
           <h1 className="text-2xl font-bold mb-2">Venha conhecer nossos serviços!</h1>
           <p>
@@ -146,7 +144,8 @@ export default function Home() {
         {isModalOpen && (
           <div className="fixed inset-0 w-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h2 className="text-2xl text-customBlue font-bold">{selectedStyle?.title}</h2>
+              <h2 className="text-2xl text-center font-semibold text-customBlue">MATCH</h2>
+              <h2 className="text-xl text-customBlue font-bold">{selectedStyle?.title}</h2>
               <img
                 src={selectedStyle?.image}
                 alt={selectedStyle?.title}
@@ -155,7 +154,7 @@ export default function Home() {
               <p>{selectedStyle?.description}</p>
               <div className="bg-white mt-4 p-2 max-w-sm w-full border-t border-customBlue">
                 <h2 className="text-xl text-customBlue font-bold text-center mb-6">Agendar Serviço</h2>
-                
+
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
@@ -171,7 +170,7 @@ export default function Home() {
                       onChange={handleChange}
                       required
                       className="w-full p-2 border border-gray-300 rounded mt-1"
-                      min={new Date().toISOString().split('T')[0]} 
+                      min={new Date().toISOString().split('T')[0]}
                     />
                   </div>
 
@@ -187,8 +186,8 @@ export default function Home() {
                       onChange={handleChange}
                       required
                       className="w-full p-2 border border-gray-300 rounded mt-1"
-                      min="08:00"   
-                      max="19:00"   
+                      min="08:00"
+                      max="19:00"
                     />
                   </div>
 

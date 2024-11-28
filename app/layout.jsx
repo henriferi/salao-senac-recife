@@ -1,12 +1,11 @@
 import Link from "next/link";
 import './globals.css';
-import { FaBars, FaHome, FaInfoCircle, FaRegSmile, FaTimes, FaWhatsapp } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaRegSmile, FaWhatsapp } from 'react-icons/fa';
 
 export const metadata = {
   title: "Salão Senac",
   description: "Salão de beleza do Senac",
 };
-
 
 
 
