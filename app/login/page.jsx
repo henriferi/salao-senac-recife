@@ -1,9 +1,11 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";  // useRouter do Next.js
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginPage() {
     const [isRegistering, setIsRegistering] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -49,7 +51,8 @@ export default function LoginPage() {
     return (
         <div className="flex items-center justify-center bg-gray-100 min-h-screen bg-[url('/senac-salaobg.jpg')] bg-cover bg-center bg-no-repeat">
             <div className="w-96 bg-white p-8 shadow-lg rounded-lg">
-                <h1 className="text-2xl font-bold mb-4">
+                <h1 className="text-2xl font-bold mb-4 text-customBlue">
+                    <img src="/senac.png" alt="logo senac" className="w-20 mb-4" />
                     {isRegistering ? "Cadastro" : "Login"}
                 </h1>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -80,17 +83,25 @@ export default function LoginPage() {
                             required
                         />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 relative">
                         <label className="block text-gray-700">Senha</label>
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             name="password"
                             value={formData.password}
                             onChange={handleInputChange}
                             className="w-full px-4 py-2 border rounded-lg"
                             placeholder="Digite sua senha"
+                            minLength={6}
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-2 top-9 text-gray-500 select-none"
+                        >
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
                     </div>
                     {isRegistering && (
                         <div className="mb-4">
@@ -106,7 +117,7 @@ export default function LoginPage() {
                             />
                         </div>
                     )}
-                    <button className="w-full bg-blue-500 text-white py-2 rounded-lg mb-4">
+                    <button className="w-full bg-customBlue  font-semibold text-white py-2 rounded-lg mb-4">
                         {isRegistering ? "Cadastrar" : "Entrar"}
                     </button>
                     <p className="text-center">

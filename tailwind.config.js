@@ -14,6 +14,7 @@ module.exports = {
         customOrange: '#F68B1F',
         hoverBlue: '#005B8C',
         hoverOrange: '##F68B1F',
+        bgCards: 'rgba(173, 216, 230, 0.9)',
       },
     },
   },

@@ -1,11 +1,14 @@
 import Link from "next/link";
 import './globals.css';
-import { FaHome, FaInfoCircle, FaRegSmile, FaWhatsapp } from 'react-icons/fa';
+import { FaBars, FaHome, FaInfoCircle, FaRegSmile, FaTimes, FaWhatsapp } from 'react-icons/fa';
 
 export const metadata = {
   title: "Salão Senac",
   description: "Salão de beleza do Senac",
 };
+
+
+
 
 export default function Layout({ children }) {
   return (
@@ -32,6 +35,7 @@ export default function Layout({ children }) {
           </div>
         </header>
 
+        
         <main>
           {children}
         </main>
