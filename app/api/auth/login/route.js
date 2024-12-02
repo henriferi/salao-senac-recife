@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '../../../../lib/prisma'; // Certifique-se de que você tem a configuração correta do Prisma
+import prisma from '../../../../lib/prisma'; 
 
 export async function POST(req) {
   const { email, password } = await req.json();
@@ -9,7 +9,6 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: 'Email e senha são obrigatórios' }), { status: 400 });
   }
 
-  // Procurar o usuário no banco
   const user = await prisma.user.findUnique({
     where: { email },
   });
@@ -18,7 +17,6 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: 'Usuário não encontrado' }), { status: 401 });
   }
 
-  // Verificar a senha
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {

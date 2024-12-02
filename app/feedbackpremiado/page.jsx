@@ -75,7 +75,7 @@ export default function FeedbackPremiado() {
   };
 
   return (
-    <div>
+    <AuthGuard>
       <Loading delay={300} />
       <Logout />
       <div className="text-center p-6 bg-bgCards rounded-lg my-4 shadow-md sm:mx-auto max-w-3xl">
@@ -137,8 +137,9 @@ export default function FeedbackPremiado() {
               <span
                 key={star}
                 onClick={() => setEstrelas(star)}
-                className={`cursor-pointer text-2xl sm:text-3xl ${estrelas >= star ? "text-yellow-500" : "text-gray-400"
-                  }`}
+                className={`cursor-pointer text-2xl sm:text-3xl ${
+                  estrelas >= star ? "text-yellow-500" : "text-gray-400"
+                }`}
               >
                 ★
               </span>
@@ -173,10 +174,11 @@ export default function FeedbackPremiado() {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span
                       key={star}
-                      className={`text-xl ${coment.estrelas >= star
-                        ? "text-yellow-500"
-                        : "text-gray-300"
-                        }`}
+                      className={`text-xl ${
+                        coment.estrelas >= star
+                          ? "text-yellow-500"
+                          : "text-gray-300"
+                      }`}
                     >
                       ★
                     </span>
@@ -206,6 +208,6 @@ export default function FeedbackPremiado() {
           </button>
         </div>
       </div>
-    </div>
+    </AuthGuard>
   );
 }
