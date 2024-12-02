@@ -21,7 +21,7 @@ export default function Logout() {
 
     return (
         <div className="flex items-center justify-end p-2">
-            <h1 className="text-sm font-semibold m-4">
+            <h1 className="text-sm font-semibold m-2">
                 Bem-vindo(a), {nomeUsuario || "Usuário"}
             </h1>
             <button

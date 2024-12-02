@@ -42,7 +42,6 @@ export default function Home() {
     },
   ];
 
-
   const openModal = (style) => {
     setSelectedStyle(style);
     setIsModalOpen(true);
@@ -84,7 +83,7 @@ export default function Home() {
       return false;
     }
 
-    setError(''); 
+    setError('');
     return true;
   };
 
@@ -99,13 +98,12 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-
   return (
     <AuthGuard>
       <Loading delay={300} />
-      <div className="bg-gray-100 min-h-screen">
-        <Logout />
-        <div className="text-center p-8 bg-bgCards rounded-lg mx-4 my-2 shadow-md">
+      <Logout />
+      <div className="min-h-screen my-4">
+        <div className="text-center bg-bgCards rounded-lg shadow-md p-6 mx-4 sm:mx-auto max-w-4xl">
           <img src="/senac.png" alt="Logo Senac" className="mx-auto w-32 h-auto mb-4" />
           <h1 className="text-2xl font-bold mb-2">Venha conhecer nossos serviços!</h1>
           <p>
@@ -116,7 +114,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 text-center gap-8 p-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-4">
           {stylesData.map((style) => (
             <div
               key={style.id}
@@ -125,14 +123,14 @@ export default function Home() {
               <img
                 src={style.image}
                 alt={style.title}
-                className="w-full h-96 object-cover"
+                className="w-full sm:h-96 lg:h-80 xl:h-96  object-cover"
               />
               <div className="p-4">
                 <h2 className="text-lg font-semibold mb-2">{style.title}</h2>
                 <p className="text-gray-600">{style.description}</p>
                 <button
                   onClick={() => openModal(style)}
-                  className="bg-customBlue w-52 text-white py-2 px-4 rounded mt-4 hover:bg-customOrange transition"
+                  className="bg-customBlue w-full sm:w-52 text-white py-2 px-4 rounded mt-4 hover:bg-customOrange transition"
                 >
                   DÊ MATCH
                 </button>
@@ -142,17 +140,17 @@ export default function Home() {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 w-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="fixed inset-0 w-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
               <h2 className="text-2xl text-center font-semibold text-customBlue">MATCH</h2>
               <h2 className="text-xl text-customBlue font-bold">{selectedStyle?.title}</h2>
               <img
                 src={selectedStyle?.image}
                 alt={selectedStyle?.title}
-                className="w-96 my-4"
+                className="w-full my-4 rounded"
               />
               <p>{selectedStyle?.description}</p>
-              <div className="bg-white mt-4 p-2 max-w-sm w-full border-t border-customBlue">
+              <div className="mt-4">
                 <h2 className="text-xl text-customBlue font-bold text-center mb-6">Agendar Serviço</h2>
 
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -194,7 +192,7 @@ export default function Home() {
                   <div className="flex justify-center">
                     <button
                       type="submit"
-                      className="bg-customBlue w-52 text-white py-2 px-4 rounded hover:bg-customOrange transition"
+                      className="bg-customBlue w-full sm:w-52 text-white py-2 px-4 rounded hover:bg-customOrange transition"
                     >
                       Agendar
                     </button>
