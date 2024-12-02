@@ -99,7 +99,7 @@ export default function Home() {
   };
 
   return (
-    <AuthGuard>
+    <div>
       <Loading delay={300} />
       <Logout />
       <div className="min-h-screen my-4">
@@ -211,6 +211,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </AuthGuard>
+    </div>
   );
 }
