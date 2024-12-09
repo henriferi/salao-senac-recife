@@ -44,23 +44,23 @@ export default function Contato() {
 
           <div>
             <p className="text-lg font-medium text-customBlue">Telefone</p>
-            <p className="text-sm">+55 (81) 1234-5678</p>
+            <p>+55 (81) 1234-5678</p>
           </div>
 
           <div>
             <p className="text-lg font-medium text-customBlue">E-mail</p>
-            <p className="text-sm">contato@salonsenac.com</p>
+            <p>contato@salonsenac.com</p>
           </div>
 
           <div>
             <p className="text-lg font-medium text-customBlue">Horário de Funcionamento</p>
-            <p className="text-sm">Segunda a Sexta: 9:00 - 18:00</p>
-            <p className="text-sm">Sábado: 9:00 - 14:00</p>
+            <p>Segunda a Sexta: 9:00 - 18:00</p>
+            <p>Sábado: 9:00 - 14:00</p>
           </div>
 
           <div>
             <p className="text-lg font-medium text-customBlue">Endereço</p>
-            <p className="text-sm">Avenida Visconde de Suassuna 500 - Santo Amaro</p>
+            <p>Avenida Visconde de Suassuna 500 - Santo Amaro</p>
           </div>
         </div>
         <div className="lg:w-1/2" id="map" style={{ height: "400px" }}></div>
