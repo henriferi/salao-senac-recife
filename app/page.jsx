@@ -141,7 +141,7 @@ export default function Home() {
 
         {isModalOpen && (
           <div className="fixed inset-0 w-screen h-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full mx-2">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full mx-6">
               <h2 className="text-2xl text-center font-semibold text-customBlue">MATCH</h2>
               <h2 className="text-xl text-customBlue font-bold mt-2 text-center">{selectedStyle?.title}</h2>
               <img
