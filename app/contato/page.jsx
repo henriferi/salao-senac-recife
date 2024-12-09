@@ -28,9 +28,19 @@ export default function Contato() {
     <AuthGuard>
       <Loading delay={300} />
       <Logout />
-      <div className="flex flex-col lg:flex-row justify-between p-6">
+      <div className="text-center p-6 bg-bgCards rounded-lg my-4 shadow-md sm:mx-auto max-w-3xl">
+        <img
+          src="/senac.png"
+          alt="Logo Senac"
+          className="mx-auto w-24 sm:w-32 h-auto mb-4"
+        />
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+          Entre em contato conosco.
+        </h1>
+      </div>
+      <div className="flex flex-col lg:flex-row justify-between items-center p-6 mt-20">
         <div className="lg:w-1/2 space-y-6">
-          <h2 className="text-2xl font-bold text-customBlue">Entre em Contato</h2>
+          <h2 className="text-2xl font-bold text-customBlue">Contatos</h2>
 
           <div>
             <p className="text-lg font-medium text-customBlue">Telefone</p>
@@ -56,11 +66,11 @@ export default function Contato() {
         <div className="lg:w-1/2" id="map" style={{ height: "400px" }}></div>
       </div>
 
-        <script
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap`}
-          async
-          defer
-        ></script>
+      <script
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap`}
+        async
+        defer
+      ></script>
     </AuthGuard>
   );
 }
