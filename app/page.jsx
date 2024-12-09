@@ -140,23 +140,23 @@ export default function Home() {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 w-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+          <div className="fixed inset-0 w-screen h-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full mx-2">
               <h2 className="text-2xl text-center font-semibold text-customBlue">MATCH</h2>
-              <h2 className="text-xl text-customBlue font-bold">{selectedStyle?.title}</h2>
+              <h2 className="text-xl text-customBlue font-bold mt-2 text-center">{selectedStyle?.title}</h2>
               <img
                 src={selectedStyle?.image}
                 alt={selectedStyle?.title}
-                className="w-full my-4 rounded"
+                className="w-full my-4 rounded max-h-96 object-cover"
               />
-              <p>{selectedStyle?.description}</p>
+              <p className="text-sm sm:text-base text-gray-700">{selectedStyle?.description}</p>
               <div className="mt-4">
-                <h2 className="text-xl text-customBlue font-bold text-center mb-6">Agendar Serviço</h2>
+                <h2 className="text-xl text-customBlue font-bold text-center mb-4 sm:mb-6">Agendar Serviço</h2>
 
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
                     <label htmlFor="date" className="block text-sm font-medium text-gray-700">
                       Data:
                     </label>
@@ -167,12 +167,12 @@ export default function Home() {
                       value={formData.date}
                       onChange={handleChange}
                       required
-                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                      className="w-full p-2 border border-gray-300 rounded mt-1 text-sm sm:text-base"
                       min={new Date().toISOString().split('T')[0]}
                     />
                   </div>
 
-                  <div className="mb-4">
+                  <div>
                     <label htmlFor="time" className="block text-sm font-medium text-gray-700">
                       Hora:
                     </label>
@@ -183,7 +183,7 @@ export default function Home() {
                       value={formData.time}
                       onChange={handleChange}
                       required
-                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                      className="w-full p-2 border border-gray-300 rounded mt-1 text-sm sm:text-base"
                       min="08:00"
                       max="19:00"
                     />

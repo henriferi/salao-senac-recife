@@ -3,7 +3,7 @@ import './globals.css';
 import { FaHome, FaInfoCircle, FaRegSmile, FaWhatsapp } from 'react-icons/fa';
 
 export const metadata = {
-  title: "Salão Senac",
+  title: "Salão Escola Senac",
   description: "Salão de beleza do Senac",
 };
 
