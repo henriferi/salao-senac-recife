@@ -6,7 +6,32 @@ import Logout from "../components/Logout";
 import { useState, useEffect } from "react";
 
 export default function FeedbackPremiado() {
-  const [comentarios, setComentarios] = useState([]);
+  const [comentarios, setComentarios] = useState([
+    {
+      id: 1,
+      nome: "Ana Souza",
+      comentario: "Adorei o atendimento! Muito profissional e dedicado.",
+      estrelas: 5,
+      createdAt: new Date().toISOString(),
+      imagem: "/cabelo1.jpg",
+    },
+    {
+      id: 2,
+      nome: "Lisa Lima",
+      comentario: "O corte foi excelente, vou recomendar para todos os amigos.",
+      estrelas: 4,
+      createdAt: new Date().toISOString(),
+      imagem: "/cabelo2.jpg",
+    },
+    {
+      id: 3,
+      nome: "Mariana Oliveira",
+      comentario: "Ótima experiência! Mal posso esperar para voltar.",
+      estrelas: 5,
+      createdAt: new Date().toISOString(),
+      imagem: "/cabelo3.jpg",
+    },
+  ]);
   const [nome, setNome] = useState("");
   const [comentario, setComentario] = useState("");
   const [erro, setErro] = useState("");
@@ -18,13 +43,21 @@ export default function FeedbackPremiado() {
 
   useEffect(() => {
     const fetchComentarios = async () => {
-      const res = await fetch("/api/feedback");
-      const data = await res.json();
-      setComentarios(data);
+      try {
+        const res = await fetch("/api/feedback");
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setComentarios([...data, ...comentarios.filter(c => c.id <= 3)]);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar os comentários:", error);
+      }
     };
 
     fetchComentarios();
   }, []);
+
+
 
   const indiceFinal = paginaAtual * comentariosPorPagina;
   const indiceInicial = indiceFinal - comentariosPorPagina;
@@ -137,9 +170,8 @@ export default function FeedbackPremiado() {
               <span
                 key={star}
                 onClick={() => setEstrelas(star)}
-                className={`cursor-pointer text-2xl sm:text-3xl ${
-                  estrelas >= star ? "text-yellow-500" : "text-gray-400"
-                }`}
+                className={`cursor-pointer text-2xl sm:text-3xl ${estrelas >= star ? "text-yellow-500" : "text-gray-400"
+                  }`}
               >
                 ★
               </span>
@@ -165,8 +197,15 @@ export default function FeedbackPremiado() {
           {comentariosPaginados.map((coment) => (
             <li
               key={coment.id}
-              className="p-4 border border-gray-300 rounded bg-zinc-100"
+              className="p-4 border border-gray-300 rounded bg-zinc-100 flex gap-4 items-start"
             >
+              {coment.imagem && (
+                <img
+                  src={coment.imagem}
+                  alt={`Imagem de ${coment.nome}`}
+                  className="w-20 h-20 object-cover"
+                />
+              )}
               <div className="break-words">
                 <p className="font-bold text-xl">{coment.nome}</p>
                 <p className="mt-1">{coment.comentario}</p>
@@ -174,11 +213,8 @@ export default function FeedbackPremiado() {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span
                       key={star}
-                      className={`text-xl ${
-                        coment.estrelas >= star
-                          ? "text-yellow-500"
-                          : "text-gray-300"
-                      }`}
+                      className={`text-xl ${coment.estrelas >= star ? "text-yellow-500" : "text-gray-300"
+                        }`}
                     >
                       ★
                     </span>
@@ -191,6 +227,7 @@ export default function FeedbackPremiado() {
             </li>
           ))}
         </ul>
+
         <div className="flex justify-center mt-4 mb-4 gap-2 sm:gap-4">
           <button
             onClick={handlePaginaAnterior}
