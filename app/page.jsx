@@ -140,22 +140,22 @@ export default function Home() {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 w-screen h-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full mx-6">
+          <div className="fixed inset-0 w-screen h-screen bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-2">
+            <div className="bg-white p-3 sm:p-3 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full">
               <h2 className="text-2xl text-center font-semibold text-customBlue">MATCH</h2>
-              <h2 className="text-xl text-customBlue font-bold mt-2 text-center">{selectedStyle?.title}</h2>
+              <h2 className="text-xl text-customBlue font-bold mt-1 text-center">{selectedStyle?.title}</h2>
               <img
                 src={selectedStyle?.image}
                 alt={selectedStyle?.title}
-                className="w-full my-4 rounded max-h-96 object-cover"
+                className="w-full my-1 rounded max-h-96 object-cover"
               />
               <p className="text-sm sm:text-base text-gray-700">{selectedStyle?.description}</p>
-              <div className="mt-4">
-                <h2 className="text-xl text-customBlue font-bold text-center mb-4 sm:mb-6">Agendar Serviço</h2>
+              <div className="mt-1">
+                <h2 className="text-xl text-customBlue font-bold text-center mb-2 sm:mb-2">Agendar Serviço</h2>
 
-                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                {error && <p className="text-red-500 text-sm mb-1">{error}</p>}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-1">
                   <div>
                     <label htmlFor="date" className="block text-sm font-medium text-gray-700">
                       Data:
@@ -199,7 +199,7 @@ export default function Home() {
                   </div>
                 </form>
               </div>
-              <div className="flex justify-end mt-4">
+              <div className="flex justify-end my-2">
                 <button
                   onClick={closeModal}
                   className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 transition"
