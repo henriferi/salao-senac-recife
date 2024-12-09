@@ -38,9 +38,9 @@ export default function Contato() {
           Entre em contato conosco.
         </h1>
       </div>
-      <div className="flex flex-col lg:flex-row justify-between items-center p-6 mt-20">
+      <div className="flex flex-col lg:flex-row justify-between p-6 lg:my-20">
         <div className="lg:w-1/2 space-y-6">
-          <h2 className="text-2xl font-bold text-customBlue">Contatos</h2>
+          <h2 className="text-2xl font-bold text-customBlue">Contato</h2>
 
           <div>
             <p className="text-lg font-medium text-customBlue">Telefone</p>
