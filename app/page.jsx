@@ -12,33 +12,52 @@ export default function Home() {
   const stylesData = [
     {
       id: 1,
-      image: '/cabelo2.jpg',
-      title: 'Corte Moderno',
+      image: '/epilacao-feminina.jpeg',
+      title: 'Epilação Feminina - com cera',
       description: 'Um corte cheio de estilo e modernidade.',
+      opcoes: ['Virilha Cavada | R$ 38', '1/2 Pernas | R$ 30', 'Virilha Cavada | R$ 38'],
     },
     {
       id: 2,
-      image: '/cabelo1.jpg',
-      title: 'Coloração Vibrante',
-      description: 'Cores vibrantes para um visual ousado.',
+      image: '/pintura.jpeg',
+      title: 'Transformação de Cor dos Cabelos',
+      description: 'Aplicação de Coloração Cabelo Todo - cliente traz a tinta.',
+      opcoes: ['R$ 50 curto','R$ 60 médio','R$ 70 longo','R$ 75 extralongo'],
     },
     {
       id: 3,
-      image: '/cabelo3.jpg',
-      title: 'Coloração Vibrante',
-      description: 'Cores vibrantes para um visual ousado.',
+      image: '/barbearia-senac.jpeg',
+      title: 'Barbearia masculina',
+      description: 'Cortes, cabelo e barba',
+      opcoes: ['Barba/Design de Barba R$ 40', 'Barba + Coloração R$ 75', 'Barba + Corte Masculino R$ 70'],
     },
     {
       id: 4,
       image: '/cabelo2.jpg',
-      title: 'Coloração Vibrante',
-      description: 'Cores vibrantes para um visual ousado.',
+      title: 'Mechas',
+      description: 'Design de Mechas.',
+      opcoes: ['Californianas R$ 300', ' Global/tonalização R$ 380', 'Reflexos ou Luzes R$ 350'],
     },
     {
       id: 5,
-      image: '/cabelo1.jpg',
-      title: 'Coloração Vibrante',
-      description: 'Cores vibrantes para um visual ousado.',
+      image: '/sobrancelha.jpeg',
+      title: 'Sobrancelhas e maquiagens',
+      description: 'Design de sobrancelhas e maquiagens variadas.',
+      opcoes: ['Coloração de Sobrancelhas R$ 40', 'Design de Sobrancelhas R$ 48', 'Design de Sobrancelhas + Henna R$ 60', 'Limpeza de Sobrancelhas | R$ 40'],
+    },
+    {
+      id: 6,
+      image: '/estetica.jpeg',
+      title: 'Estética',
+      description: 'Serviços de Estética em geral.',
+      opcoes: ['Argiloterapia Corporal R$ 65', 'Banho de Lua R$ 90', 'Limpeza de Pele R$ 100', 'Massagem Modeladora Localizada R$ 70'],
+    },
+    {
+      id: 7,
+      image: '/penteados.jpeg',
+      title: 'Penteados variados',
+      description: 'Serviços de Estética em geral.',
+      opcoes: ['Penteado Básico R$ 100', 'Trança Nagô ou Torcidos/global R$ 150', 'Trança Boxeadora até 2 tranças R$ 75', 'Trança Nagô ou Torcidos/frontal R$ 70'],
     },
   ];
 
@@ -55,6 +74,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
+    opcao: '',
   });
 
   const [error, setError] = useState('');
@@ -94,7 +114,7 @@ export default function Home() {
       return;
     }
 
-    alert(`Agendamento realizado para: ${formData.date} às ${formData.time}`);
+    alert(`Agendamento realizado para: ${formData.date} às ${formData.time} - Opção: ${formData.opcao}`);
     setIsModalOpen(false);
   };
 
@@ -106,12 +126,8 @@ export default function Home() {
         <div className="text-center bg-bgCards rounded-lg shadow-md p-6 mx-4 sm:mx-auto max-w-4xl">
           <img src="/senac.png" alt="Logo Senac" className="mx-auto w-32 h-auto mb-4" />
           <h1 className="text-2xl font-bold mb-2">Venha conhecer nossos serviços!</h1>
-          <p>
-            Transforme seu visual com os melhores profissionais do Senac.
-          </p>
-          <p className="mt-2">
-            Contato: (81) 99999-9999 | Email: contato@senacpe.com.br
-          </p>
+          <p>Transforme seu visual com os melhores profissionais do Senac.</p>
+          <p className="mt-2">Contato: (81) 99999-9999 | Email: contato@senacpe.com.br</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-4">
@@ -123,7 +139,7 @@ export default function Home() {
               <img
                 src={style.image}
                 alt={style.title}
-                className="w-full sm:h-96 lg:h-80 xl:h-96  object-cover"
+                className="w-full sm:h-96 lg:h-80 xl:h-96 object-cover"
               />
               <div className="p-4">
                 <h2 className="text-lg font-semibold mb-2">{style.title}</h2>
@@ -156,6 +172,26 @@ export default function Home() {
                 {error && <p className="text-red-500 text-sm mb-1">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-1">
+                  <div>
+                    <label htmlFor="opcao" className="block text-sm font-medium text-gray-700">
+                      Opção:
+                    </label>
+                    <select
+                      id="opcao"
+                      name="opcao"
+                      value={formData.opcao}
+                      onChange={handleChange}
+                      required
+                      className="w-full p-2 border border-gray-300 rounded mt-1 text-sm sm:text-base"
+                    >
+                      <option value="">Selecione uma opção</option>
+                      {selectedStyle?.opcoes.map((opcao, index) => (
+                        <option key={index} value={opcao}>
+                          {opcao}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                   <div>
                     <label htmlFor="date" className="block text-sm font-medium text-gray-700">
                       Data:
