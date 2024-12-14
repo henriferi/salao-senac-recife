@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '../../../../lib/prisma'; // Certifique-se de que você tem a configuração correta do Prisma
+import prisma from '../../../../lib/prisma';
 
 export async function POST(req) {
   const { name, email, password } = await req.json();
@@ -9,7 +9,6 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: 'Todos os campos são obrigatórios' }), { status: 400 });
   }
 
-  // Verificar se o usuário já existe no banco
   const userExists = await prisma.user.findUnique({
     where: { email },
   });
@@ -18,10 +17,8 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: 'Este email já está registrado.' }), { status: 400 });
   }
 
-  // Criptografar a senha
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Criar o novo usuário no banco de dados
   const user = await prisma.user.create({
     data: {
       name,
@@ -30,7 +27,6 @@ export async function POST(req) {
     },
   });
 
-  // Gerar o JWT
   const token = jwt.sign(
     { userId: user.id, email: user.email, userName: user.name},
     process.env.JWT_SECRET,
